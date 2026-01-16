@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   math_utili.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eskomo <eskomo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: essiakomo <essiakomo@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 00:24:41 by eskomo            #+#    #+#             */
-/*   Updated: 2026/01/15 00:45:25 by eskomo           ###   ########.fr       */
+/*   Updated: 2026/01/16 23:19:00 by essiakomo        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "../fractol.h"
 
 /*
  * ft_atod - Converts a string to a double.
@@ -72,7 +72,3 @@ t_complex	ft_add_complex(t_complex a, t_complex b)
 	return (result);
 }
 
-t_complex	ft_hypo_to_origin(t_complex z)
-{
-	return (sqrt((z.real * z.real) + (z.imagainary * z.imagainary)));
-}

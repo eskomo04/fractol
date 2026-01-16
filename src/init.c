@@ -3,18 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eskomo <eskomo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: essiakomo <essiakomo@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 05:04:31 by eskomo            #+#    #+#             */
-/*   Updated: 2026/01/14 23:59:13 by eskomo           ###   ########.fr       */
+/*   Updated: 2026/01/16 23:10:13 by essiakomo        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fractol.h"
+#include "../fractol.h"
 
+void	init_mandelbrot(t_fractal *fract)
+{
+	fract->fractal_name = "Mandelbrot";
+	fract->min_real = -2.0;
+	fract->max_real = 1.0;
+	fract->min_imag = -1.5;
+	fract->max_imag = 1.5;
+	fract->max_iter = 100;
+}
 
-
-void	init_mlx(t_mlx *mlx)
+void	init_julia(t_fractal *fract, double real, double imaginary)
+{
+	fract->fractal_name = "Julia";
+	fract->min_real = -2.0;
+	fract->max_real = 2.0;
+	fract->min_imag = -2.0;
+	fract->max_imag = 2.0;
+	fract->max_iter = 100;
+	fract->julia_c.real = real;
+	fract->julia_c.imaginary = imaginary;
+}
+void	init_mlx(t_fractal *mlx)
 {
 	mlx->connection = mlx_init();
 	if (!mlx->connection)
@@ -22,7 +41,7 @@ void	init_mlx(t_mlx *mlx)
 		ft_printf("Error: MLX initialization failed.\n");
 		exit(EXIT_FAILURE);
 	}
-	mlx->window = mlx_new_window(mlx->connection, WIDTH, HEIGHT, /*Window Title*/);
+	mlx->window = mlx_new_window(mlx->connection, WIDTH, HEIGHT, mlx->fractal_name);
 	if (!mlx->window)
 	{
 		mlx_destroy_display(mlx->connection);
