@@ -51,7 +51,7 @@ SRC_DIR		=	src
 OBJ_DIR		=	obj
 
 # All your .c source files (just file names)
-SRC_FILES	=	fractol.c init.c render.c events.c utils1.c utils2.c colours.c
+SRC_FILES	=	fractol.c init.c render.c events.c math_utili.c main.c colors.c
 
 # Add the src/ prefix to each source file
 SRCS		=	$(addprefix $(SRC_DIR)/, $(SRC_FILES))
@@ -80,7 +80,7 @@ $(NAME): $(MLX_LIB) $(LIBFT_LIB) $(OBJS)
 # $@ = output file (e.g., obj/fractol.o)
 # $< = source file (e.g., src/fractol.c)
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	@mkdir -p $(dir $@)                   # Create folder if it doesn't exist
+	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -I$(INCLUDES) -c $< -o $@
 
 # ================================

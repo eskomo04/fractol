@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: essiakomo <essiakomo@student.42.fr>        +#+  +:+       +#+        */
+/*   By: eskomo <eskomo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 03:47:38 by eskomo            #+#    #+#             */
-/*   Updated: 2026/01/16 23:07:07 by essiakomo        ###   ########.fr       */
+/*   Updated: 2026/01/17 03:18:47 by eskomo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,22 +41,14 @@ int	julia_iterate(t_complex z, t_complex c, int max_iter)
 	int		i;
 	double	temp_real;
 
-	// Note: z already starts at the pixel position
-	// (passed as parameter, not initialized to 0)
-
 	i = 0;
 	while (i < max_iter)
 	{
-		// Check if escaped (|z|² > 4)
 		if (z.real * z.real + z.imagainary * z.imagainary > 4.0)
 			return (i);
-
-		// Calculate z² + c
 		temp_real = z.real * z.real - z.imagainary * z.imagainary;
 		z.imagainary = 2.0 * z.real * z.imagainary;
 		z.real = temp_real;
-
-		// Add the constant c
 		z.real += c.real;
 		z.imagainary += c.imagainary;
 
@@ -71,29 +63,20 @@ int	mandelbrot_iterate(t_complex c, int max_iter)
 	int			i;
 	double		temp_real;
 
-	// Start with z = 0 + 0i
 	z.real = 0.0;
-	z.imaginary = 0.0;
+	z.imagainary = 0.0;
 	i = 0;
 	while (i < max_iter)
 	{
-		// Check if z has escaped (|z| > 2)
-		// We use |z|² > 4 to avoid expensive sqrt() calculation
-		// |z|² = real² + imaginary²
-		if (z.real * z.real + z.imaginary * z.imaginary > 4.0)
-			return (i); // Escaped after i iterations
 
-		// Calculate z² + c
-		// z² = (a + bi)² = (a² - b²) + (2ab)i
-		temp_real = z.real * z.real - z.imaginary * z.imaginary;
-		z.imaginary = 2.0 * z.real * z.imaginary;
+		if (z.real * z.real + z.imagainary * z.imagainary > 4.0)
+			return (i);
+		temp_real = z.real * z.real - z.imagainary * z.imagainary;
+		z.imagainary = 2.0 * z.real * z.imagainary;
 		z.real = temp_real;
-
-		// Add c to get z² + c
 		z.real += c.real;
-		z.imaginary += c.imaginary;
+		z.imagainary += c.imagainary;
 		i++;
 	}
-	// Didn't escape - this point is IN the Mandelbrot set
 	return (max_iter);
 }

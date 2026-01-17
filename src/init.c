@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: essiakomo <essiakomo@student.42.fr>        +#+  +:+       +#+        */
+/*   By: eskomo <eskomo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 05:04:31 by eskomo            #+#    #+#             */
-/*   Updated: 2026/01/16 23:10:13 by essiakomo        ###   ########.fr       */
+/*   Updated: 2026/01/17 02:48:11 by eskomo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	init_mandelbrot(t_fractal *fract)
 	fract->max_iter = 100;
 }
 
-void	init_julia(t_fractal *fract, double real, double imaginary)
+void	init_julia(t_fractal *fract, double real, double imag)
 {
 	fract->fractal_name = "Julia";
 	fract->min_real = -2.0;
@@ -31,8 +31,9 @@ void	init_julia(t_fractal *fract, double real, double imaginary)
 	fract->max_imag = 2.0;
 	fract->max_iter = 100;
 	fract->julia_c.real = real;
-	fract->julia_c.imaginary = imaginary;
+	fract->julia_c.imagainary = imag;
 }
+
 void	init_mlx(t_fractal *mlx)
 {
 	mlx->connection = mlx_init();
