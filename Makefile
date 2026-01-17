@@ -1,56 +1,29 @@
-# ================================
-#           BASIC CONFIG
-# ================================
 
-# Name of the final executable
 NAME		=	fractol
 
-# Compiler and flags
 CC			=	cc
 CFLAGS		=	-Wall -Wextra -Werror
 
-# ================================
-#   OS-SPECIFIC MiniLibX SETUP
-# ================================
-
-# Determine the OS using 'uname -s'
 # On Linux: link X11 and math libraries
 # On macOS: link to OpenGL and AppKit frameworks
-UNAME_S		:=	$(shell uname -s)
-ifeq ($(UNAME_S), Linux)
-	MLX_DIR	=	./minilibx-linux
-	MLX_LIB	=	$(MLX_DIR)/libmlx.a
-	MLX_FLAGS = -lXext -lX11 -lm
-else
-	MLX_DIR	=	./minilibx
-	MLX_LIB	=	$(MLX_DIR)/libmlx.a
-	MLX_FLAGS = -framework OpenGL -framework AppKit
-endif
+MLX_DIR	=	./minilibx-linux
+MLX_LIB	=	$(MLX_DIR)/libmlx.a
+MLX_FLAGS = -lXext -lX11 -lm
 
-# ================================
-#            LIBFT SETUP
-# ================================
 
 # Path to libft library
 LIBFT_DIR	=	./libft
 LIBFT_LIB	=	$(LIBFT_DIR)/libft.a
 
-# ================================
-#         INCLUDE DIRECTORIES
-# ================================
 
-# -I flags let the compiler find your header files
-INCLUDES	=	-Iinc -I$(LIBFT_DIR) -I$(MLX_DIR)
-
-# ================================
-#          SOURCE & OBJECTS
-# ================================
+# -I flags let the compiler find header files
+INCLUDES	= -I$(LIBFT_DIR) -I$(MLX_DIR)
 
 # Source and object directory names
 SRC_DIR		=	src
 OBJ_DIR		=	obj
 
-# All your .c source files (just file names)
+# All .c source files
 SRC_FILES	=	fractol.c init.c render.c events.c math_utili.c main.c colors.c
 
 # Add the src/ prefix to each source file
